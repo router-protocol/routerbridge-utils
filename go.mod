@@ -1,4 +1,4 @@
-module github.com/ChainSafe/routerbridge-utils
+module github.com/router-protocol/routerbridge-utils
 
 go 1.13
 
