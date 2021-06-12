@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/ChainSafe/chainbridge-utils/keystore"
-	"github.com/ChainSafe/chainbridge-utils/msg"
+	"github.com/router-protocol/routerbridge-utils/msg"
 )
 
 func TestSaveAndLoad(t *testing.T) {

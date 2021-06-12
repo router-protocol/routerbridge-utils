@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ChainSafe/chainbridge-utils/msg"
 	"github.com/ChainSafe/log15"
+	"github.com/router-protocol/routerbridge-utils/msg"
 )
 
 type mockWriter struct {
