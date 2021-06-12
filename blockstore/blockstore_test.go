@@ -9,7 +9,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ChainSafe/chainbridge-utils/keystore"
+	"github.com/router-protocol/routerbridge-utils/keystore"
 	"github.com/router-protocol/routerbridge-utils/msg"
 )
 

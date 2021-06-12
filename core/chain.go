@@ -4,7 +4,7 @@
 package core
 
 import (
-	metrics "github.com/ChainSafe/chainbridge-utils/metrics/types"
+	metrics "github.com/router-protocol/routerbridge-utils/metrics/types"
 	"github.com/router-protocol/routerbridge-utils/msg"
 )
 
