@@ -47,6 +47,7 @@ func NewFungibleTransfer(
 	destAmount *big.Int,
 	srcToken []byte,
 	destToken []byte,
+	settleInReserves int,
 ) Message {
 	return Message{
 		Source:       source,
@@ -61,6 +62,7 @@ func NewFungibleTransfer(
 			recipient,
 			srcToken,
 			destToken,
+			settleInReserves,
 		},
 	}
 }
