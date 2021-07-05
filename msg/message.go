@@ -28,12 +28,13 @@ var GenericTransfer TransferType = "GenericTransfer"
 
 // Message is used as a generic format to communicate between chains
 type Message struct {
-	Source       ChainId      // Source where message was initiated
-	Destination  ChainId      // Destination chain of message
-	Type         TransferType // type of bridge transfer
-	DepositNonce Nonce        // Nonce for the deposit
-	ResourceId   ResourceId
-	Payload      []interface{} // data associated with event sequence
+	Source         ChainId      // Source where message was initiated
+	Destination    ChainId      // Destination chain of message
+	Type           TransferType // type of bridge transfer
+	DepositNonce   Nonce        // Nonce for the deposit
+	ResourceId     ResourceId
+	DestResourceId ResourceId
+	Payload        []interface{} // data associated with event sequence
 }
 
 func NewFungibleTransfer(
@@ -47,15 +48,17 @@ func NewFungibleTransfer(
 	destAmount *big.Int,
 	srcToken []byte,
 	destToken []byte,
+	destResourceId ResourceId,
 	destStableToken []byte,
 	destStableAmount *big.Int,
 ) Message {
 	return Message{
-		Source:       source,
-		Destination:  dest,
-		Type:         FungibleTransfer,
-		DepositNonce: nonce,
-		ResourceId:   resourceId,
+		Source:         source,
+		Destination:    dest,
+		Type:           FungibleTransfer,
+		DepositNonce:   nonce,
+		ResourceId:     resourceId,
+		DestResourceId: destResourceId,
 		Payload: []interface{}{
 			srcAmount.Bytes(),
 			stableAmount.Bytes(),
