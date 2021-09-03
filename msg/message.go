@@ -6,6 +6,8 @@ package msg
 import (
 	"fmt"
 	"math/big"
+
+	ethcommon "github.com/ethereum/go-ethereum/common"
 )
 
 type ChainId uint8
@@ -43,7 +45,7 @@ func NewFungibleTransfer(
 	nonce Nonce,
 	srcAmount *big.Int,
 	resourceId ResourceId,
-	recipient []byte,
+	recipient ethcommon.Address,
 	stableAmount *big.Int,
 	destAmount *big.Int,
 	srcToken []byte,
