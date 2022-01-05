@@ -54,7 +54,7 @@ func NewFungibleTransfer(
 	destStableToken []byte,
 	destStableAmount *big.Int,
 	isDestNative *big.Int,
-	
+
 ) Message {
 	return Message{
 		Source:         source,
@@ -72,7 +72,7 @@ func NewFungibleTransfer(
 			srcToken,
 			destStableToken,
 			destToken,
-			isDestNative,
+			isDestNative.Bytes(),
 		},
 	}
 }
