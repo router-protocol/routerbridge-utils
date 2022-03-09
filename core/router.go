@@ -6,14 +6,14 @@ package core
 import (
 	"fmt"
 	"sync"
-
+	"math/big"
 	log "github.com/ChainSafe/log15"
 	"github.com/router-protocol/routerbridge-utils/msg"
 )
 
 // Writer consumes a message and makes the requried on-chain interactions.
 type Writer interface {
-	ResolveMessage(message msg.Message) bool
+	ResolveMessage(message msg.Message, num *big.Int) bool
 }
 
 // Router forwards messages from their source to their destination
@@ -32,7 +32,7 @@ func NewRouter(log log.Logger) *Router {
 }
 
 // Send passes a message to the destination Writer if it exists
-func (r *Router) Send(msg msg.Message) error {
+func (r *Router) Send(msg msg.Message, num *big.Int) error {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
@@ -42,7 +42,7 @@ func (r *Router) Send(msg msg.Message) error {
 		return fmt.Errorf("unknown destination chainId: %d", msg.Destination)
 	}
 
-	go w.ResolveMessage(msg)
+	go w.ResolveMessage(msg, num)
 	return nil
 }
 
