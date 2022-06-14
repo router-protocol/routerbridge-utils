@@ -80,7 +80,7 @@ func NewFungibleTransfer(
 	}
 }
 
-func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
+func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, widgetId WidgetId, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
