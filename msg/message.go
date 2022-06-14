@@ -87,6 +87,7 @@ func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId Resour
 		Type:         NonFungibleTransfer,
 		DepositNonce: nonce,
 		ResourceId:   resourceId,
+		WidgetId:     widgetId,
 		Payload: []interface{}{
 			tokenId.Bytes(),
 			recipient,
