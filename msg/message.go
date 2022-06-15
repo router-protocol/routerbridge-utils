@@ -13,6 +13,7 @@ import (
 type ChainId uint8
 type TransferType string
 type ResourceId [32]byte
+type WidgetId string
 
 func (r ResourceId) Hex() string {
 	return fmt.Sprintf("%x", r)
@@ -36,6 +37,7 @@ type Message struct {
 	DepositNonce   Nonce        // Nonce for the deposit
 	ResourceId     ResourceId
 	DestResourceId ResourceId
+	WidgetId       WidgetId
 	Payload        []interface{} // data associated with event sequence
 }
 
@@ -54,7 +56,7 @@ func NewFungibleTransfer(
 	destStableToken []byte,
 	destStableAmount *big.Int,
 	isDestNative *big.Int,
-
+	widgetId WidgetId,
 ) Message {
 	return Message{
 		Source:         source,
@@ -63,6 +65,7 @@ func NewFungibleTransfer(
 		DepositNonce:   nonce,
 		ResourceId:     resourceId,
 		DestResourceId: destResourceId,
+		WidgetId:       widgetId,
 		Payload: []interface{}{
 			srcAmount.Bytes(),
 			stableAmount.Bytes(),
@@ -77,13 +80,14 @@ func NewFungibleTransfer(
 	}
 }
 
-func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, metadata []byte) Message {
+func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, tokenId *big.Int, recipient, widgetId WidgetId, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         NonFungibleTransfer,
 		DepositNonce: nonce,
 		ResourceId:   resourceId,
+		WidgetId:     widgetId,
 		Payload: []interface{}{
 			tokenId.Bytes(),
 			recipient,
@@ -92,13 +96,14 @@ func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId Resour
 	}
 }
 
-func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, metadata []byte) Message {
+func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId, metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
 		Type:         GenericTransfer,
 		DepositNonce: nonce,
 		ResourceId:   resourceId,
+		WidgetId:     widgetId,
 		Payload: []interface{}{
 			metadata,
 		},
