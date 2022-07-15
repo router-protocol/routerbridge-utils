@@ -96,7 +96,7 @@ func NewNonFungibleTransfer(source, dest ChainId, nonce Nonce, resourceId Resour
 	}
 }
 
-func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId, metadata []byte) Message {
+func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId , gasLimit *big.Int , gasPrice *big.Int , metadata []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
@@ -106,6 +106,8 @@ func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId
 		WidgetId:     widgetId,
 		Payload: []interface{}{
 			metadata,
+			gasLimit,
+			gasPrice
 		},
 	}
 }
