@@ -28,6 +28,7 @@ func (n Nonce) Big() *big.Int {
 var FungibleTransfer TransferType = "FungibleTransfer"
 var NonFungibleTransfer TransferType = "NonFungibleTransfer"
 var GenericTransfer TransferType = "GenericTransfer"
+var SequencerTransfer TransferType = "SequencerTransfer"
 
 // Message is used as a generic format to communicate between chains
 type Message struct {
@@ -101,6 +102,22 @@ func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId
 		Source:       source,
 		Destination:  dest,
 		Type:         GenericTransfer,
+		DepositNonce: nonce,
+		ResourceId:   resourceId,
+		WidgetId:     widgetId,
+		Payload: []interface{}{
+			metadata,
+			gasLimit,
+			gasPrice,
+		},
+	}
+}
+
+func NewSequencerTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId, gasLimit *big.Int, gasPrice *big.Int, metadata []byte) Message {
+	return Message{
+		Source:       source,
+		Destination:  dest,
+		Type:         SequencerTransfer,
 		DepositNonce: nonce,
 		ResourceId:   resourceId,
 		WidgetId:     widgetId,
