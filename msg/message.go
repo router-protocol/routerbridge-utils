@@ -58,6 +58,7 @@ func NewFungibleTransfer(
 	destStableAmount *big.Int,
 	isDestNative *big.Int,
 	widgetId WidgetId,
+	hash []byte,
 ) Message {
 	return Message{
 		Source:         source,
@@ -77,6 +78,7 @@ func NewFungibleTransfer(
 			destStableToken,
 			destToken,
 			isDestNative.Bytes(),
+			hash,
 		},
 	}
 }
@@ -113,7 +115,7 @@ func NewGenericTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId
 	}
 }
 
-func NewSequencerTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId, gasLimit *big.Int, gasPrice *big.Int, metadata []byte) Message {
+func NewSequencerTransfer(source, dest ChainId, nonce Nonce, resourceId ResourceId, widgetId WidgetId, gasLimit *big.Int, gasPrice *big.Int, metadata []byte, hash []byte) Message {
 	return Message{
 		Source:       source,
 		Destination:  dest,
@@ -125,6 +127,7 @@ func NewSequencerTransfer(source, dest ChainId, nonce Nonce, resourceId Resource
 			metadata,
 			gasLimit,
 			gasPrice,
+			hash,
 		},
 	}
 }
