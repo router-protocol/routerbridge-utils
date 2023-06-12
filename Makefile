@@ -5,7 +5,7 @@ GOLANGCI := $(GOPATH)/bin/golangci-lint
 all: help
 help: Makefile
 	@echo
-	@echo " Choose a make command to run in "$(PROJECTNAME)":"
+	@echo " 1Choose a make command to run in "$(PROJECTNAME)":"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
